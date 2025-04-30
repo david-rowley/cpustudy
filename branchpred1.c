@@ -10,39 +10,35 @@
 #define LOOPS 100
 
 static inline void
-sum_v1(int *input, int len, int64_t *sumzero_to_ten, int64_t *sumother)
+sum_v1(int *input, int len, int64_t *sumneg, int64_t *sumpos)
 {
-	int64_t zero_to_ten = 0;
-	int64_t other = 0;
+	int64_t neg = 0;
+	int64_t pos = 0;
 	
 	for (int i = 0; i < len; i++)
 	{
-		if (input[i] >= 0 && input[i] <= 10)
-			zero_to_ten += input[i];
+		if (input[i] < 0)
+			neg += input[i];
 		else
-			other += input[i];
+			pos += input[i];
 	}
 
-	*sumzero_to_ten = zero_to_ten;
-	*sumother = other;
+	*sumneg = neg;
+	*sumpos = pos;
 }
 
 static inline void
-sum_v2(int *input, int len, int64_t *sumzero_to_ten, int64_t *sumother)
+sum_v2(int *input, int len, int64_t *sumneg, int64_t *sumpos)
 {
-	int64_t zero_to_ten = 0;
-	int64_t other = 0;
+	int64_t sums[2] = { 0, 0};
 	
 	for (int i = 0; i < len; i++)
 	{
-		if (input[i] >= 0 & input[i] <= 10)
-			zero_to_ten += input[i];
-		else
-			other += input[i];
+		sums[(input[i] > 0)] += input[i];
 	}
 
-	*sumzero_to_ten = zero_to_ten;
-	*sumother = other;
+	*sumneg = sums[0];
+	*sumpos = sums[1];
 }
 
 #define NANOSEC_PER_SEC 1000000000
@@ -57,7 +53,7 @@ get_clock_diff(struct timespec *t1, struct timespec *t2)
 	return nanosec;
 }
 
-#define NINPUTS 10000
+#define NINPUTS 10000000
 
 static void
 populate_input(int *input, int len)
@@ -69,30 +65,47 @@ populate_input(int *input, int len)
 		// printf("%d\n", input[i]);
 }
 
-int main()
+int main(int argc, char **argv)
 {
 	struct timespec start,end;
 	int64_t v1_time, v2_time;
-	int *input = (int *) malloc(NINPUTS * sizeof(int));
+	int *numbers;
+	int nnumbers;
 	int64_t sum1, sum2;
-	
-	if (input == NULL)
+
+	if (argc < 2)
 	{
-		fprintf(stderr, "malloc failure\n");
+		fprintf(stderr, "Usage: %s <array size>\n", argv[0]);
 		return -1;
 	}
 
-	populate_input(input, NINPUTS);
+	nnumbers = atoi(argv[1]);
+	
+	if (nnumbers < 0)
+	{
+		fprintf(stderr, "Usage: %s <array size>\n", argv[0]);
+		return -1;
+	}
+
+
+	numbers = (int *) malloc(nnumbers * sizeof(int));
+	if (numbers == NULL)
+	{
+		fprintf(stderr, "unable to allocate %zu bytes\n", nnumbers * sizeof(int));
+		return -2;
+	}
+
+	populate_input(numbers, nnumbers);
 
 	clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &start);
 
 	for (int i = 0; i < LOOPS; i++)
 	{
-		sum_v1(input, NINPUTS, &sum1, &sum2);
+		sum_v1(numbers, nnumbers, &sum1, &sum2);
 	}
 
 	clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &end);
-	v1_time = get_clock_diff(&end, &start);
+	v1_time = get_clock_diff(&end, &start) / LOOPS;
 	printf("v1: done in %ld nanoseconds\n", v1_time);
 	printf("sum1 = %" PRId64 ", sum2 = %" PRId64 "\n", sum1, sum2);
 
@@ -100,11 +113,11 @@ int main()
 
 	for (int i = 0; i < LOOPS; i++)
 	{
-		sum_v2(input, NINPUTS, &sum1, &sum2);
+		sum_v2(numbers, nnumbers, &sum1, &sum2);
 	}
 
 	clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &end);
-	v2_time = get_clock_diff(&end, &start);
+	v2_time = get_clock_diff(&end, &start) / LOOPS;
 	printf("v2: done in %ld nanoseconds (%g times faster than v2)\n", v2_time, (double) v1_time / v2_time);	
 	printf("sum1 = %" PRId64 ", sum2 = %" PRId64 "\n", sum1, sum2);
 

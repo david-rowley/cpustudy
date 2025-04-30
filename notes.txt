@@ -1,0 +1,19 @@
+https://www.agner.org/optimize/microarchitecture.pdf
+
+2 Out-of-order execution:
+
+"if the later instructions need the outputs from the earlier
+instruction. If each instruction depends on the result of the preceding instruction, then we
+have no opportunities for out-of-order execution. This is called a dependency chain."
+
+
+Instruction retirement:
+
+
+"After all the operations are finished, the value in the temporary register that represents the
+last value of EAX in the code sequence is written to a permanent EAX register. This process
+is called retirement (see e.g. page 83)."
+
+"Speculative execution means that the
+instructions are decoded and executed, but the results are not retired into the permanent
+register file, and memory writes are pending until the branch instruction is finally resolved."
