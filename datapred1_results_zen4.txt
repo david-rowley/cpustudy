@@ -1,0 +1,55 @@
+8192 time: linear in 1493 nanoseconds (sum1=33550336) random in 1488 nanoseconds (sum2=33550336) (0.996651 times slower than in order)
+[ perf record: Woken up 1 times to write data ]
+[ perf record: Captured and wrote 0.002 MB perf.data (9 samples) ]
+16384 time: linear in 2805 nanoseconds (sum1=134209536) random in 4302 nanoseconds (sum2=134209536) (1.53369 times slower than in order)
+[ perf record: Woken up 1 times to write data ]
+[ perf record: Captured and wrote 0.002 MB perf.data (9 samples) ]
+32768 time: linear in 5937 nanoseconds (sum1=536854528) random in 11330 nanoseconds (sum2=536854528) (1.90837 times slower than in order)
+[ perf record: Woken up 1 times to write data ]
+[ perf record: Captured and wrote 0.002 MB perf.data (9 samples) ]
+65536 time: linear in 11904 nanoseconds (sum1=2147450880) random in 25956 nanoseconds (sum2=2147450880) (2.18044 times slower than in order)
+[ perf record: Woken up 1 times to write data ]
+[ perf record: Captured and wrote 0.002 MB perf.data (10 samples) ]
+131072 time: linear in 24117 nanoseconds (sum1=8589869056) random in 56490 nanoseconds (sum2=8589869056) (2.34233 times slower than in order)
+[ perf record: Woken up 1 times to write data ]
+[ perf record: Captured and wrote 0.002 MB perf.data (10 samples) ]
+    70.35%  datapred1  datapred1             [.] sum_array_random
+262144 time: linear in 50404 nanoseconds (sum1=34359607296) random in 123022 nanoseconds (sum2=34359607296) (2.44072 times slower than in order)
+[ perf record: Woken up 1 times to write data ]
+[ perf record: Captured and wrote 0.002 MB perf.data (11 samples) ]
+524288 time: linear in 105014 nanoseconds (sum1=137438691328) random in 283710 nanoseconds (sum2=137438691328) (2.70164 times slower than in order)
+[ perf record: Woken up 1 times to write data ]
+[ perf record: Captured and wrote 0.002 MB perf.data (17 samples) ]
+    60.52%  datapred1  datapred1             [.] sum_array_random
+1048576 time: linear in 190163 nanoseconds (sum1=549755289600) random in 588760 nanoseconds (sum2=549755289600) (3.09608 times slower than in order)
+[ perf record: Woken up 1 times to write data ]
+[ perf record: Captured and wrote 0.006 MB perf.data (124 samples) ]
+    66.44%  datapred1  datapred1             [.] sum_array_random
+2097152 time: linear in 419796 nanoseconds (sum1=2199022206976) random in 1381628 nanoseconds (sum2=2199022206976) (3.29119 times slower than in order)
+[ perf record: Woken up 1 times to write data ]
+[ perf record: Captured and wrote 0.018 MB perf.data (432 samples) ]
+    84.11%  datapred1  datapred1             [.] sum_array_random
+4194304 time: linear in 922945 nanoseconds (sum1=8796090925056) random in 3722430 nanoseconds (sum2=8796090925056) (4.03321 times slower than in order)
+[ perf record: Woken up 1 times to write data ]
+[ perf record: Captured and wrote 0.050 MB perf.data (1293 samples) ]
+    89.73%  datapred1  datapred1             [.] sum_array_random
+8388608 time: linear in 2510040 nanoseconds (sum1=35184367894528) random in 19775098 nanoseconds (sum2=35184367894528) (7.8784 times slower than in order)
+[ perf record: Woken up 1 times to write data ]
+[ perf record: Captured and wrote 0.218 MB perf.data (5678 samples) ]
+    95.79%  datapred1  datapred1             [.] sum_array_random
+16777216 time: linear in 5367567 nanoseconds (sum1=140737479966720) random in 63567357 nanoseconds (sum2=140737479966720) (11.8429 times slower than in order)
+[ perf record: Woken up 3 times to write data ]
+[ perf record: Captured and wrote 0.723 MB perf.data (18933 samples) ]
+    96.65%  datapred1  datapred1             [.] sum_array_random
+33554432 time: linear in 15011730 nanoseconds (sum1=562949936644096) random in 163506933 nanoseconds (sum2=562949936644096) (10.8919 times slower than in order)
+[ perf record: Woken up 7 times to write data ]
+[ perf record: Captured and wrote 1.728 MB perf.data (45258 samples) ]
+    97.71%  datapred1  datapred1             [.] sum_array_random
+67108864 time: linear in 19350784 nanoseconds (sum1=2251799780130816) random in 356898056 nanoseconds (sum2=2251799780130816) (18.4436 times slower than in order)
+[ perf record: Woken up 15 times to write data ]
+[ perf record: Captured and wrote 3.596 MB perf.data (94221 samples) ]
+    98.34%  datapred1  datapred1             [.] sum_array_random
+134217728 time: linear in 37071553 nanoseconds (sum1=9007199187632128) random in 738001468 nanoseconds (sum2=9007199187632128) (19.9075 times slower than in order)
+[ perf record: Woken up 29 times to write data ]
+[ perf record: Captured and wrote 7.072 MB perf.data (185346 samples) ]
+    98.84%  datapred1  datapred1             [.] sum_array_random

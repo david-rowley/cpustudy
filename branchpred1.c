@@ -106,8 +106,8 @@ int main(int argc, char **argv)
 
 	clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &end);
 	v1_time = get_clock_diff(&end, &start) / LOOPS;
-	printf("v1: done in %ld nanoseconds\n", v1_time);
-	printf("sum1 = %" PRId64 ", sum2 = %" PRId64 "\n", sum1, sum2);
+	//printf("v1: done in %ld nanoseconds\n", v1_time);
+//	printf("sum1 = %" PRId64 ", sum2 = %" PRId64 "\n", sum1, sum2);
 
 	clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &start);
 
@@ -118,8 +118,9 @@ int main(int argc, char **argv)
 
 	clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &end);
 	v2_time = get_clock_diff(&end, &start) / LOOPS;
-	printf("v2: done in %ld nanoseconds (%g times faster than v2)\n", v2_time, (double) v1_time / v2_time);	
-	printf("sum1 = %" PRId64 ", sum2 = %" PRId64 "\n", sum1, sum2);
+//	printf("v2: done in %ld nanoseconds (%g times faster than v2)\n", v2_time, (double) v1_time / v2_time);	
+//printf("sum1 = %" PRId64 ", sum2 = %" PRId64 "\n", sum1, sum2);
+	printf("v1_time %ld v2_time %ld\n", v1_time, v2_time);
 
 	return 0;
 }
